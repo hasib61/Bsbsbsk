@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔮 AROE TEAM 🎲</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            background: #1A1A2E;
+            color: #FFD700;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #00ADB5;
+            text-shadow: 0px 0px 10px #00ADB5;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            display: none;
+        }
+
+        .lock-screen {
+            background: black; color: white; text-align: center;
+            padding: 40px; position: fixed; top: 0; left: 0;
+            width: 80%; height: 100%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+        }
+
+        .lock-screen h2 {
+            color: gold;
+            text-shadow: 0px 0px 10px gold;
+        }
+
+        .unlock-btn {
+            background: red; color: white; font-size: 24px;
+            padding: 15px 30px; border: none; border-radius: 10px;
+            cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
+
+        .unlock-btn:hover {
+            background: gold;
+            color: black;
+        }
+
+        .input-box {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 40px; height: 40px;
+            text-align: center; font-size: 20px; font-weight: bold;
+            background: #222; color: gold; border: 3px solid gold;
+            border-radius: 8px; transition: 0.3s;
+        }
+
+        button {
+            background: #E94560; color: white; font-size: 22px;
+            padding: 12px 22px; border: none; border-radius: 10px;
+            cursor: pointer; font-weight: bold; transition: 0.3s;
+            margin: 10px;
+        }
+
+        button:hover { background: #00ADB5; color: black; }
+
+        .result-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .prediction-box {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            border: 2px solid gold;
+            box-shadow: 0px 0px 10px gold;
+        }
+
+        .message-box {
+            display: none;
+            background: #0F3460;
+            color: white;
+            padding: 15px;
+            margin: 20px auto;
+            border-radius: 10px;
+            max-width: 400px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .share-btn {
+            background: #00FF00; color: black; font-size: 18px;
+            padding: 10px 20px; border: none; border-radius: 10px;
+            cursor: pointer; font-weight: bold; margin-top: 10px;
+        }
+
+        .share-btn:hover { background: #FFA41B; color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="lock-screen" id="lockScreen">
+        <h2>🔒 Access Locked 🔒</h2>
+        <p>Join Our Telegram channel to unlock predictions!</p>
+        <button class="unlock-btn" onclick="unlockPrediction()">🔓 Join & Unlock</button>
+    </div>
+
+    <h1>🔮 AROE TEAM 🎲</h1>
+    <p>Enter the last 5 numbers (0-9) and get the best prediction!</p>
+
+    <div class="container" id="mainContainer">
+        <div class="input-box">
+            <input type="number" id="num1" min="0" max="9" placeholder="?" required>
+            <input type="number" id="num2" min="0" max="9" placeholder="?" required>
+            <input type="number" id="num3" min="0" max="9" placeholder="?" required>
+            <input type="number" id="num4" min="0" max="9" placeholder="?" required>
+            <input type="number" id="num5" min="0" max="9" placeholder="?" required>
+        </div>
+        <button onclick="predictOutcome()">🔮 Prediction</button>
+
+        <div class="result-box" id="history"></div>
+
+        <div class="prediction-box">
+            <p class="prediction" id="predictedBigSmall"></p>
+            <p class="accuracy" id="accuracyBigSmall"></p>
+            <p class="prediction" id="predictedOddEven"></p>
+            <p class="accuracy" id="accuracyOddEven"></p>
+        </div>
+    </div>
+
+    <button class="share-btn" onclick="shareOnTelegram()">📤 Telegram</button>
+    <button class="share-btn" onclick="showTelegramLink()">🔗 Show Telegram Link</button>
+
+    <div class="message-box" id="telegramMessageBox">
+        <p>📢 Join Telegram Channel: <br> <strong>https://t.me/+RFF5wlUexkgwNzVl</strong></p>
+    </div>
+
+    <script>
+        function unlockPrediction() {
+            window.open("https://t.me/+RFF5wlUexkgwNzVl", "_blank");
+            document.getElementById("lockScreen").style.display = "none";
+            document.getElementById("mainContainer").style.display = "block";
+        }
+
+        function shareOnTelegram() {
+            let text = "🔥 যেকোনো ব্যাটিং ও ট্রেনিং সাইটের ফ্রিতে এক পেতে ও ভালো কিছু পেতে! যোগ দিন আমাদের Telegram চ্যানেলে: https://t.me/+RFF5wlUexkgwNzVl";
+            window.open(`https://t.me/share/url?url=${encodeURIComponent(text)}`, "_blank");
+        }
+
+        function showTelegramLink() {
+            let messageBox = document.getElementById("telegramMessageBox");
+            messageBox.style.display = "block";
+        }
+
+        function predictOutcome() {
+            let nums = [parseInt(num1.value), parseInt(num2.value), parseInt(num3.value), parseInt(num4.value), parseInt(num5.value)];
+            if (nums.some(num => num < 0 || num > 9 || isNaN(num))) {
+                alert("⚠️ Enter valid numbers between 0 and 9!");
+                return;
+            }
+
+            let nextSize = nums.filter(n => n <= 4).length > 2 ? "Small" : "Big";
+            let nextColor = nums.filter(n => n % 2 === 0).length > 2 ? "Red" : "Green";
+
+            document.getElementById("predictedBigSmall").innerText = `📏 Result: ${nextSize.toUpperCase()}`;
+            document.getElementById("predictedOddEven").innerText = `🎨 Colour: ${nextColor.toUpperCase()}`;
+        }
+    </script>
+
+</body>
+</html>
